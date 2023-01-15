@@ -55,11 +55,11 @@ const AppRouter = () => {
             <Route path='/farmacias/ver/:id' element={<SearchPharmacyPage/>}/>
             
             {/* centros de distribucion */}
-            <Route path='/centros_distribución/agregar' element={<AddCenterOfDistributionPage/>}/>
-            <Route path='/centros_distribución/actualizar/:id' element={<UpdateCenterOfDistributionPage/>}/>
+            <Route path='/centros_distribucion/agregar' element={<AddCenterOfDistributionPage/>}/>
+            <Route path='/centros_distribucion/actualizar/:id' element={<UpdateCenterOfDistributionPage/>}/>
             <Route path='/centros_distribucion/eliminar/:id' element={<DeleteCenterOfDistributionPage/>}/>
-            <Route path='/centros_distribución/all' element={<CenterOfDistributionPage/>}/>
-            <Route path='/centros_distribución/ver/:id' element={<SearchCenterOfDistributionPage/>}/>
+            <Route path='/centros_distribucion/all' element={<CenterOfDistributionPage/>}/>
+            <Route path='/centros_distribucion/ver/:id' element={<SearchCenterOfDistributionPage/>}/>
 
             {/* medicamentos */}
             <Route path='/medicamentos/agregar' element={<AddMedicinesPage/>}/>
