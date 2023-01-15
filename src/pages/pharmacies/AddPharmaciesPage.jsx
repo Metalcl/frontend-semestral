@@ -1,8 +1,54 @@
+import axios from 'axios';
 import React from 'react'
+import { useForm } from '../../hooks/useForm'
 
 const AddPharmaciesPage = () => {
+
+  const { form, changed } = useForm({});
+
+  const addPharmacy = async (e) => {
+
+    e.preventDefault();
+
+    const request = await fetch('http://127.0.0.1:8000/api/farmacias/agregar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(form)
+    });
+
+    const response = await request.json();
+
+    console.log(response);
+
+  }
+
   return (
-    <h1>Agregar Farmacias</h1>
+    <>
+
+      <h1>Registrar farmacia</h1>
+
+      <div>
+
+        <form onSubmit={addPharmacy}>
+
+          <label>Nombre</label>
+          <input type="text" name="nombre" onChange={changed} />
+
+          <label>Direccion</label>
+          <input type="text" name="direccion" onChange={changed} />
+
+          <label>Email</label>
+          <input type="email" name="mail" onChange={changed} />
+
+          <input type="submit" value="Registrar" />
+
+        </form>
+
+      </div>
+
+    </>
   )
 }
 
