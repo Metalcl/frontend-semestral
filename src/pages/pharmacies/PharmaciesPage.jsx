@@ -6,6 +6,23 @@ const PharmaciesPage = () => {
 
   const { pharmacies, setPharmacies } = useContext(PharmaciesContext);
 
+  const deletePharmacy = async (id) => {
+
+    const request = await fetch("http://127.0.0.1:8000/api/farmacias/eliminar/" + id, {
+
+      method: 'DELETE',
+      Headers: {
+        'Content-Type': 'application/json'
+      }
+
+    });
+
+    const response = await request.json();
+
+    console.log(response);
+
+  }
+
   return (
     <>
 
@@ -24,10 +41,23 @@ const PharmaciesPage = () => {
             <th>Email</th>
             <th>Creado</th>
             <th>Actualizado</th>
+            <th>Acciones</th>
 
           </tr>
 
         </thead>
+
+        {pharmacies.length === 0 &&
+
+        <tbody>
+          
+          <tr>
+                  
+            <td colSpan={6}>No hay farmacias registradas</td>
+          
+          </tr>
+        
+        </tbody>}
 
         {pharmacies.map((pharmacy, index) => {
 
@@ -42,6 +72,17 @@ const PharmaciesPage = () => {
                 <td>{pharmacy.farm_mail}</td>
                 <td>{new Date(pharmacy.created_at).toLocaleDateString()}</td>
                 <td>{new Date(pharmacy.updated_at).toLocaleDateString()}</td>
+                <td>
+
+                  <button><Link to={`/farmacias/actualizar/${pharmacy.id}`}>Editar</Link></button>
+
+                  <button onClick={() => {
+
+                    deletePharmacy(pharmacy.id);
+
+                  }}>Eliminar</button>
+
+                </td>
 
               </tr>
 
