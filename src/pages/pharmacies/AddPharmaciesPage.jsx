@@ -10,7 +10,7 @@ const AddPharmaciesPage = () => {
 
     e.preventDefault();
 
-    const request = await axios.post('http://127.0.0.1:8000/api/farmacias/agregar', form);
+    const request = await axios.post(`http://127.0.0.1:8000/api/farmacias/agregar`, form);
 
     console.log(request);
 

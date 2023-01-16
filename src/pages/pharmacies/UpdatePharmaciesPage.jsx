@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useForm } from '../../hooks/useForm'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -11,19 +10,12 @@ const UpdatePharmaciesPage = () => {
 
   }, []);
 
-  useEffect(() => {
-
-    updatePharmacy();
-
-  }, []);
-
-  const { form, changed } = useForm({});
   const [pharmacy, setPharmacy] = useState([]);
   const params = useParams();
 
   const getPharmacy = async () => {
 
-    const request = await axios.get("http://127.0.0.1:8000/api/farmacias/ver/" + params.id);
+    const request = await axios.get(`http://127.0.0.1:8000/api/farmacias/ver/${params.id}`);
 
     setPharmacy(request.data.farmacias);
 
@@ -33,13 +25,9 @@ const UpdatePharmaciesPage = () => {
 
     e.preventDefault();
 
-    console.log(e.target.nombre.value);
-    console.log(e.target.direccion.value);
-    console.log(e.target.mail.value);
-
     const request = await axios({
       method: 'put',
-      url: 'http://127.0.0.1:8000/api/farmacias/actualizar/'+params.id,
+      url: `http://127.0.0.1:8000/api/farmacias/actualizar/${params.id}`,
       data: {
         nombre: e.target.nombre.value,
         direccion: e.target.direccion.value,
@@ -47,7 +35,7 @@ const UpdatePharmaciesPage = () => {
       }
     });
 
-    console.log(request);
+    location.reload();
 
   }
 
@@ -65,13 +53,13 @@ const UpdatePharmaciesPage = () => {
             <form onSubmit={updatePharmacy}>
 
               <label>Nombre</label>
-              <input type="text" defaultValue={pharmacy.farm_nombre} name="nombre" onChange={changed} />
+              <input type="text" defaultValue={pharmacy.farm_nombre} name="nombre" />
 
               <label>Direccion</label>
-              <input type="text" defaultValue={pharmacy.farm_direccion} name="direccion" onChange={changed} />
+              <input type="text" defaultValue={pharmacy.farm_direccion} name="direccion" />
 
               <label>Email</label>
-              <input type="email" defaultValue={pharmacy.farm_mail} name="mail" onChange={changed} />
+              <input type="email" defaultValue={pharmacy.farm_mail} name="mail" />
 
               <input type="submit" value="Registrar" />
 

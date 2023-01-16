@@ -15,7 +15,7 @@ export const PharmaciesProvider = ({ children }) => {
 
   const getPharmacies = async() => {
 
-    const request = await axios.get("http://127.0.0.1:8000/api/farmacias/all");
+    const request = await axios.get(`http://127.0.0.1:8000/api/farmacias/all`);
 
     setPharmacies(request.data.farmacias);
 

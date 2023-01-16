@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { MedicinesContext } from '../../context/MedicinesContext';
 
 const MedicinesPage = () => {
+
+  const { medicines, setMedicines } = useContext(MedicinesContext);
+
   return (
-    <div>MedicinesPage</div>
+    <>
+
+      <h1>Listado de medicamentos</h1>
+
+    </>
   )
 }
 
