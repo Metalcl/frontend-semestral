@@ -22,6 +22,7 @@ const IncomesPage = () => {
       <table>
         <thead>
           <tr>
+            <th>ID</th>
             <th>Centro de distribución</th>
             <th>Fecha ingreso</th>
             <th>Creado</th>
@@ -33,12 +34,13 @@ const IncomesPage = () => {
           return (
             <tbody key={index}>
               <tr>
+                <td>{income.id}</td>
                 <td>{income.ingr_centro_dist}</td>
                 <td>{new Date(income.ingr_fecha).toLocaleDateString()}</td>
                 <td>{new Date(income.created_at).toLocaleDateString()}</td>
                 <td>{new Date(income.updated_at).toLocaleDateString()}</td>
                 <td>
-                  <button><Link to={`/ingresos/actualizar/${income.ingr_centro_dist}`}>Editar</Link></button>
+                  <button><Link to={`/ingresos/actualizar/${income.id}`}>Editar</Link></button>
                   <button
                     onClick={() => deleteIncome(income.id)}
                   >
