@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { StockContext } from '../../context/StockContext';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const StockPage = () => {
 
