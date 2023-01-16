@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from '../../hooks/useForm'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -11,8 +11,14 @@ const UpdatePharmaciesPage = () => {
 
   }, []);
 
+  useEffect(() => {
+
+    updatePharmacy();
+
+  }, []);
+
   const { form, changed } = useForm({});
-  const [pharmacy, setPharmacy] = useState({});
+  const [pharmacy, setPharmacy] = useState([]);
   const params = useParams();
 
   const getPharmacy = async () => {
@@ -27,7 +33,21 @@ const UpdatePharmaciesPage = () => {
 
     e.preventDefault();
 
-    //Falta hacerlo wuajaja
+    console.log(e.target.nombre.value);
+    console.log(e.target.direccion.value);
+    console.log(e.target.mail.value);
+
+    const request = await axios({
+      method: 'put',
+      url: 'http://127.0.0.1:8000/api/farmacias/actualizar/'+params.id,
+      data: {
+        nombre: e.target.nombre.value,
+        direccion: e.target.direccion.value,
+        mail: e.target.mail.value
+      }
+    });
+
+    console.log(request);
 
   }
 
@@ -36,27 +56,37 @@ const UpdatePharmaciesPage = () => {
 
       <h1>Modificar farmacia</h1>
 
-      <div>
+      {pharmacy.map((pharmacy, index) => {
 
-        <form onSubmit={updatePharmacy}>
+        return (
 
-          <label>Nombre</label>
-          <input type="text" defaultValue={pharmacy.farm_nombre} name="nombre" onChange={changed} />
+          <div key={index}>
 
-          <label>Direccion</label>
-          <input type="text" defaultValue={pharmacy.farm_direccion} name="direccion" onChange={changed} />
+            <form onSubmit={updatePharmacy}>
 
-          <label>Email</label>
-          <input type="email" defaultValue={pharmacy.farm_mail} name="mail" onChange={changed} />
+              <label>Nombre</label>
+              <input type="text" defaultValue={pharmacy.farm_nombre} name="nombre" onChange={changed} />
 
-          <input type="submit" value="Registrar" />
+              <label>Direccion</label>
+              <input type="text" defaultValue={pharmacy.farm_direccion} name="direccion" onChange={changed} />
 
-        </form>
+              <label>Email</label>
+              <input type="email" defaultValue={pharmacy.farm_mail} name="mail" onChange={changed} />
 
-      </div>
+              <input type="submit" value="Registrar" />
+
+            </form>
+
+          </div>
+
+        )
+
+      })}
 
     </>
+
   )
+  
 }
 
 export default UpdatePharmaciesPage

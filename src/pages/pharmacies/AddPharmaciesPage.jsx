@@ -10,17 +10,9 @@ const AddPharmaciesPage = () => {
 
     e.preventDefault();
 
-    const request = await fetch('http://127.0.0.1:8000/api/farmacias/agregar', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(form)
-    });
+    const request = await axios.post('http://127.0.0.1:8000/api/farmacias/agregar', form);
 
-    const response = await request.json();
-
-    console.log(response);
+    console.log(request);
 
   }
 

@@ -11,6 +11,7 @@ export const PharmaciesProvider = ({ children }) => {
   }, []);
 
   const [pharmacies, setPharmacies] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getPharmacies = async() => {
 

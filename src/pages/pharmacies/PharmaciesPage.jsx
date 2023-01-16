@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { PharmaciesContext } from '../../context/PharmaciesContext'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 const PharmaciesPage = () => {
 
@@ -8,18 +9,9 @@ const PharmaciesPage = () => {
 
   const deletePharmacy = async (id) => {
 
-    const request = await fetch("http://127.0.0.1:8000/api/farmacias/eliminar/" + id, {
+    const request = await axios.delete("http://127.0.0.1:8000/api/farmacias/eliminar/" + id);
 
-      method: 'DELETE',
-      Headers: {
-        'Content-Type': 'application/json'
-      }
-
-    });
-
-    const response = await request.json();
-
-    console.log(response);
+    console.log(request);
 
   }
 
