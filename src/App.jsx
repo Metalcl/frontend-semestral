@@ -5,6 +5,7 @@ import { ExpensesProvider } from './context/ExpensesProvider'
 import { IncomesProvider } from './context/IncomesProvider'
 import { TransfersProvider } from './context/TransfersProvider'
 import { MedicinesProvider } from './context/MedicinesProvider'
+import { StockProvider } from './context/StockProvider'
 
 function App() {
 
@@ -20,11 +21,15 @@ function App() {
 
             <MedicinesProvider>
 
-              <PharmaciesProvider>
+              <StockProvider>
 
-                <AppRouter />
+                <PharmaciesProvider>
 
-              </PharmaciesProvider>
+                  <AppRouter />
+
+                </PharmaciesProvider>
+
+              </StockProvider>
 
             </MedicinesProvider>
 
