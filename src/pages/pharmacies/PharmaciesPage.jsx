@@ -10,8 +10,8 @@ const PharmaciesPage = () => {
   const deletePharmacy = async (id) => {
 
     const request = await axios.delete(`http://127.0.0.1:8000/api/farmacias/eliminar/${id}`);
-
     console.log(request);
+    location.reload();
 
   }
 

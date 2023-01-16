@@ -16,7 +16,6 @@ const UpdatePharmaciesPage = () => {
   const getPharmacy = async () => {
 
     const request = await axios.get(`http://127.0.0.1:8000/api/farmacias/ver/${params.id}`);
-
     setPharmacy(request.data.farmacias);
 
   }
