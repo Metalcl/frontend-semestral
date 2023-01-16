@@ -11,7 +11,6 @@ const AddMedicinesPage = () => {
     e.preventDefault();
 
     const request = await axios.post(`http://127.0.0.1:8000/api/medicamentos/agregar`, form);
-    console.log(request);
 
     location.reload();
 

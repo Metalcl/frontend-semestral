@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 const UpdateTransfersPage = () => {
 
-  const { centerOfDistribution, setCenterOfDistribution } = useContext(TransfersContext);
+  const { centerOfDistribution, setCenterOfDistribution, medicines, setMedicines } = useContext(TransfersContext);
   const { form, changed } = useForm({});
   const params = useParams();
 
@@ -22,7 +22,7 @@ const UpdateTransfersPage = () => {
   return (
     <>
 
-      <h1>Registrar traspasos</h1>
+      <h1>Modificar traspaso</h1>
 
       <form onSubmit={updateTransfer}>
 
@@ -74,7 +74,30 @@ const UpdateTransfersPage = () => {
 
         <div>
 
-          <input type="submit" value="Registrar" />
+          <label>Medicamento</label>
+          <select name="id_medicamento" onChange={changed}>
+
+            <option>Seleccione un medicamento</option>
+            {
+              medicines.map((medicine, index) => (
+                <option key={index} value={medicine.id}>{medicine.med_nombre}</option>
+              ))
+            }
+
+          </select>
+
+        </div>
+
+        <div>
+
+          <label>Cantidad de medicamentos</label>
+          <input type="number" name="det_tra_cantidad" placeholder="Ingrese una cantidad" min={1} onChange={changed} />
+
+        </div>
+
+        <div>
+
+          <input type="submit" value="Actualizar" />
 
         </div>
 

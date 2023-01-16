@@ -17,9 +17,9 @@ function App() {
 
         <IncomesProvider>
 
-          <TransfersProvider>
+          <MedicinesProvider>
 
-            <MedicinesProvider>
+            <TransfersProvider>
 
               <StockProvider>
 
@@ -31,9 +31,9 @@ function App() {
 
               </StockProvider>
 
-            </MedicinesProvider>
+            </TransfersProvider>
 
-          </TransfersProvider>
+          </MedicinesProvider>
 
         </IncomesProvider>
 

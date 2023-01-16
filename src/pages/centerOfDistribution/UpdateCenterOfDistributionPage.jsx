@@ -32,7 +32,7 @@ const UpdateCenterOfDistributionPage = () => {
       }
     });
 
-    console.log(request);
+    location.reload();
     
   }
 

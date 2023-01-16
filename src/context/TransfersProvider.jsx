@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import { TransfersContext } from "./TransfersContext"
 import { CenterOfDistributionContext } from './CenterOfDistributionContext';
+import { MedicinesContext } from './MedicinesContext';
 import axios from 'axios';
 
 export const TransfersProvider = ({children}) => {
@@ -12,6 +13,7 @@ export const TransfersProvider = ({children}) => {
   }, []);
 
   const { centerOfDistribution, setCenterOfDistribution } = useContext(CenterOfDistributionContext);
+  const { medicines, setMedicines } = useContext(MedicinesContext);
   const [ transfers, setTransfers ] = useState([]);
 
   const getTransfers = async () => {
@@ -26,6 +28,8 @@ export const TransfersProvider = ({children}) => {
     <TransfersContext.Provider value={{
         centerOfDistribution,
         setCenterOfDistribution,
+        medicines,
+        setMedicines,
         transfers,
         setTransfers
     }}>

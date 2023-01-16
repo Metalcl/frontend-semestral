@@ -7,8 +7,11 @@ const AddCenterOfDistributionPage = () => {
   const { form, changed } = useForm({});
 
   const addCenterOfDistribution = async (e) => {
+
+    e.preventDefault();
+
     const request = await axios.post('http://127.0.0.1:8000/api/centros_distribucion/agregar', form);
-    console.log(request);
+    
   }
 
   
