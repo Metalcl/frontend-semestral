@@ -33,6 +33,9 @@ import AddExpensesPage from './pages/expenses/AddExpensesPage'
 import UpdateExpensesPage from './pages/expenses/UpdateExpensesPage'
 import ExpensesPage from './pages/expenses/ExpensesPage'
 import SearchExpensesPage from './pages/expenses/SearchExpensesPage'
+import AddStockPage from './pages/stock/AddStockPage'
+import UpdateStockPage from './pages/stock/UpdateStockPage'
+import StockPage from './pages/stock/StockPage'
 
 
 const AppRouter = () => {
@@ -77,6 +80,12 @@ const AppRouter = () => {
             <Route path='/egresos/actualizar/:id' element={<UpdateExpensesPage/>}/>
             <Route path='/egresos/all' element={<ExpensesPage/>}/>
             <Route path='/egresos/ver/:id' element={<SearchExpensesPage/>}/>
+
+            {/* stock */}
+            <Route path='/stock/agregar' element={<AddStockPage/>}/>
+            <Route path='/stock/actualizar/:id' element={<UpdateStockPage/>}/>
+            <Route path='/stock/all' element={<StockPage/>}/>
+        
         </Route>
         <Route path='*' element={<Navigate to='/'/>}/>
     </Routes>

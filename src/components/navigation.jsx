@@ -25,7 +25,9 @@ function navigation() {
       <Link to='/egresos/all'>
         <p>Egresos</p>
       </Link>
-
+      <Link to='/stock/all'>
+        <p>Stock</p>
+      </Link>
 
 
       <Outlet/>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect }from 'react'
 import axios from 'axios'
-import { useForm } from '../../hooks/useForm'
 import { useParams } from 'react-router-dom'
 
 const UpdateCenterOfDistributionPage = () => {
@@ -11,7 +10,6 @@ const UpdateCenterOfDistributionPage = () => {
 
   }, []);
 
-  const { Form, changed } = useForm({});
   const [centerOfDistribution, setCenterOfDistribution] = useState([]);
   const params = useParams();
 
@@ -46,11 +44,11 @@ const UpdateCenterOfDistributionPage = () => {
           <div key={index}>
             <form onSubmit={updateCenterOfDistribution}>
               <label>Código</label>
-              <input type="text" defaultValue={center.cd_codigo} name="codigo" onChange={changed} />
+              <input type="text" defaultValue={center.cd_codigo} name="codigo"/>
               <label>Dirección</label>
-              <input type="text" defaultValue={center.cd_direccion} name="direccion" onChange={changed} />
+              <input type="text" defaultValue={center.cd_direccion} name="direccion"/>
               <label>Teléfono</label>
-              <input type="text" defaultValue={center.cd_telefono} name="telefono" onChange={changed} />
+              <input type="text" defaultValue={center.cd_telefono} name="telefono"/>
               <input type="submit" value="Registrar" />
             </form>
           </div>
