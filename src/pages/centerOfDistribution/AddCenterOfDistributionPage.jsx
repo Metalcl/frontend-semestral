@@ -7,21 +7,12 @@ const AddCenterOfDistributionPage = () => {
   const { form, changed } = useForm({});
 
   const addCenterOfDistribution = async (e) => {
-
-    e.preventDefault();
-
-    const request = await fetch('http://127.0.0.1:8000/api/centros_distribucion/agregar', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(form)
-    });
-    const response = await request.json();
-    // console.log(response);
-
+    const request = await axios.post('http://127.0.0.1:8000/api/centros_distribucion/agregar', form);
+    console.log(request);
   }
 
+  
+  
   return (
     <>
       <h1>Registrar centro de distribucion</h1>

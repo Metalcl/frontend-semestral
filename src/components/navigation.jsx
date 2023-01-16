@@ -11,7 +11,7 @@ function navigation() {
         <p>Farmacias</p>
       </Link>
       <Link to='/centros_distribucion/all'>
-        <p>Centros de disribución</p>
+        <p>Centros de distribución</p>
       </Link>
       <Link to='/medicamentos/all'>
         <p>Medicamentos</p>
