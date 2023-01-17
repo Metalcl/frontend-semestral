@@ -34,7 +34,7 @@ const AddTransfersPage = () => {
         <Box>
           <InputLabel>Centro de distribucion origen</InputLabel>
           <select name="tras_cd_origen" onChange={changed}>
-            <option disabled="disabled">Seleccione un centro de distribucion</option>
+            <option>Seleccione un centro de distribucion</option>
             {
               centerOfDistribution.map((center, index) => (
                 <option key={index} value={center.id}>{center.cd_direccion}</option>
@@ -45,7 +45,7 @@ const AddTransfersPage = () => {
         <Box>
           <InputLabel>Centro de distribucion destino</InputLabel>
           <select name="tras_cd_destino" onChange={changed}>
-            <option disabled="disabled">Seleccione un centro de distribucion</option>
+            <option>Seleccione un centro de distribucion</option>
             {
               centerOfDistribution.map((center, index) => (
                 <option key={index} value={center.id}>{center.cd_direccion}</option>
@@ -56,7 +56,7 @@ const AddTransfersPage = () => {
         <Box>
           <InputLabel>Medicamento</InputLabel>
           <select name="id_medicamento" onChange={changed}>
-            <option disabled="disabled">Seleccione un medicamento</option>
+            <option>Seleccione un medicamento</option>
             {
               medicines.map((medicine, index) => (
                 <option key={index} value={medicine.id}>{medicine.med_nombre}</option>
