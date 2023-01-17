@@ -24,7 +24,7 @@ const PharmaciesPage = () => {
       <Button variant="contained">
         <Link to="/farmacias/agregar">Registrar</Link>
       </Button>
-      <TableContainer>
+      <TableContainer className='container-table'>
         <Table>
           <TableHead>
             <TableRow>
