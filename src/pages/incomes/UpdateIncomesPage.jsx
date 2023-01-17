@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
 
 const UpdateIncomesPage = () => {
 
   useEffect(() => {
     getIncome();
   }, []);
+
+  
+
   const [income, setIncome] = useState([]);
   const params = useParams();
 
@@ -28,9 +30,8 @@ const UpdateIncomesPage = () => {
         compuesto: e.target.compuesto.value
       }
     });
-    location.reload();
+    console.log(request.data);
   }
-
 
   return (
     <div>
@@ -40,6 +41,7 @@ const UpdateIncomesPage = () => {
             <div key={index}>
               <form onSubmit={updateIncome}>
                 <label>Centro de distribución</label>
+                {/* cambiar por un select */}
                 <input type="text" defaultValue={income.ingr_centro_dist} name="nombre" />
                 <label>Fecha ingreso</label>
                 <input type="date" defaultValue={income.ingr_fecha} name="compuesto" />

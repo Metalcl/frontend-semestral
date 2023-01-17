@@ -9,6 +9,7 @@ const AddIncomesPage = () => {
   const addIncome = async (e) => {
     e.preventDefault();
     const request = await axios.post(`http://127.0.0.1:8000/api/ingreso/agregar`,form);
+    console.log(request.data)
   }
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import Navigation from './components/Navigation'
+import Navigation from './components/navigation'
 import HomePage from './pages/HomePage'
 
 /*----------CREAR ARCHIVOS DE BARRIL PARA MINIMIZAR LAS EXPORTACIONES----------*/

@@ -8,7 +8,7 @@ export const IncomesProvider = ({children}) => {
 
   useEffect(() => {
     getIncomes();
-  }, []);
+  }, [children]);
 
   const getIncomes = async () => {
     const request = await axios.get('http://127.0.0.1:8000/api/ingreso/all');

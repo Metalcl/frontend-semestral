@@ -13,8 +13,6 @@ const IncomesPage = () => {
     location.reload();
   }
 
-
-
   return (
     <>
       <h1>Listado de ingresos</h1>
