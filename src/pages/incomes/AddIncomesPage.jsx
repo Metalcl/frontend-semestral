@@ -12,20 +12,24 @@ const AddIncomesPage = () => {
   const {form, changed } = useForm({});
 
   const addIncome = async (e) => {
+
     e.preventDefault();
+
     const request = await axios.post(`http://127.0.0.1:8000/api/ingreso/agregar`,form);
-    console.log(request.data)
+
+    location.reload();
+    
   }
 
   return (
     <>
       <h1>Registrar ingreso</h1>
       <Box>
-        <form onSubmit={addIncome}>
-          <InputLabel>Fecha Ingreso</InputLabel>
-          <input type="date" name='ingr_fecha' onChange={changed}/>
+        <form onSubmit={addIncome}> 
           <InputLabel>Ingresar centro de distribución</InputLabel>
           <TextField type="text" name='ingr_centro_dist' onChange={changed}/>
+          <InputLabel>Fecha Ingreso</InputLabel>
+          <TextField type="date" name='ingr_fecha' onChange={changed}/>
           <Button  type="submit" variant='contained' color='primary'>
             Registrar
           </Button>
