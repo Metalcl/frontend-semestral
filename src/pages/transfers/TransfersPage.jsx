@@ -28,7 +28,8 @@ const TransfersPage = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Centro de distribucion destino</TableCell>
+              <TableCell>Centro de distribición de origen</TableCell>
+              <TableCell>Centro de distribución de destino</TableCell>
               <TableCell>Estado</TableCell>
               <TableCell>Creado</TableCell>
               <TableCell>Actualizado</TableCell>
@@ -51,10 +52,10 @@ const TransfersPage = () => {
                   <TableCell>{new Date(transfer.created_at).toLocaleDateString()}</TableCell>
                   <TableCell>{new Date(transfer.updated_at).toLocaleDateString()}</TableCell>
                   <TableCell>
-                    <Button>
+                    <Button variant='contained' color='warning'>
                       <Link to={`/traspasos/actualizar/${transfer.id}`}>Editar</Link>
                     </Button>
-                    <Button onClick={() => {
+                    <Button variant='contained' color='error' onClick={() => {
                       deleteTransfer(transfer.id);
                     }}>Eliminar
                     </Button>
