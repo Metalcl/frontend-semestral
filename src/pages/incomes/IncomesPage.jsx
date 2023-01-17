@@ -4,10 +4,16 @@ import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
+import TableContainer from '@mui/material/TableContainer';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import { Button } from '@mui/material';
+
 const IncomesPage = () => {
-
   const { incomes, setIncomes } = useContext(IncomesContext);
-
   const deleteIncome = async (id) => {
     const request = await axios.delete(`http://127.0.0.1:8000/api/ingreso/eliminar/${id}`);
     location.reload();
@@ -16,40 +22,46 @@ const IncomesPage = () => {
   return (
     <>
       <h1>Listado de ingresos</h1>
-      <Link to="/ingresos/agregar">Nuevo ingreso</Link>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Centro de distribución</th>
-            <th>Fecha ingreso</th>
-            <th>Creado</th>
-            <th>Actualizado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        {incomes.map((income, index) => {
-          return (
-            <tbody key={index}>
-              <tr>
-                <td>{income.id}</td>
-                <td>{income.ingr_centro_dist}</td>
-                <td>{new Date(income.ingr_fecha).toLocaleDateString()}</td>
-                <td>{new Date(income.created_at).toLocaleDateString()}</td>
-                <td>{new Date(income.updated_at).toLocaleDateString()}</td>
-                <td>
-                  <button><Link to={`/ingresos/actualizar/${income.id}`}>Editar</Link></button>
-                  <button
-                    onClick={() => deleteIncome(income.id)}
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          )
-        })}
-      </table>
+      <Button variant="contained">
+        <Link to="/ingresos/agregar">Nuevo ingreso</Link>
+      </Button>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>Centro de distribución</TableCell>
+              <TableCell>Fecha ingreso</TableCell>
+              <TableCell>Creado</TableCell>
+              <TableCell>Actualizado</TableCell>
+              <TableCell>Acciones</TableCell>
+            </TableRow>
+          </TableHead>
+          {incomes.map((income, index) => {
+            return (
+              <TableBody key={index}>
+                <TableRow>
+                  <TableCell>{income.id}</TableCell>
+                  <TableCell>{income.ingr_centro_dist}</TableCell>
+                  <TableCell>{new Date(income.ingr_fecha).toLocaleDateString()}</TableCell>
+                  <TableCell>{new Date(income.created_at).toLocaleDateString()}</TableCell>
+                  <TableCell>{new Date(income.updated_at).toLocaleDateString()}</TableCell>
+                  <TableCell>
+                    <Button variant='contained' color='warning'>
+                      <Link to={`/ingresos/actualizar/${income.id}`}>Editar</Link>
+                    </Button>
+                    <Button variant='contained' color='error'
+                      onClick={() => deleteIncome(income.id)}
+                    >
+                      Eliminar
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            )
+          })}
+        </Table>
+      </TableContainer>
     </>
   )
 }
