@@ -2,6 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import { useForm } from '../../hooks/useForm'
 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import { Button } from '@mui/material';
+
 const AddIncomesPage = () => {
 
   const {form, changed } = useForm({});
@@ -13,18 +18,20 @@ const AddIncomesPage = () => {
   }
 
   return (
-    <div>
+    <>
       <h1>Registrar ingreso</h1>
-      <div>
+      <Box>
         <form onSubmit={addIncome}>
-          <label>Fecha Ingreso</label>
+          <InputLabel>Fecha Ingreso</InputLabel>
           <input type="date" name='ingr_fecha' onChange={changed}/>
-          <label>Ingresar centro de distribución</label>
-          <input type="text" name='ingr_centro_dist' onChange={changed}/>
-          <input type="submit" value="Registrar"/>
+          <InputLabel>Ingresar centro de distribución</InputLabel>
+          <TextField type="text" name='ingr_centro_dist' onChange={changed}/>
+          <Button  type="submit" variant='contained' color='primary'>
+            Registrar
+          </Button>
         </form>
-      </div>
-    </div>
+      </Box>
+    </>
   )
 }
 
