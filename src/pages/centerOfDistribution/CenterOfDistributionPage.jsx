@@ -26,44 +26,46 @@ const CenterOfDistributionPage = () => {
         <Link to={`/centros_distribucion/agregar`}>Registrar</Link>
       </Button>
       <TableContainer>
-        <TableHead>
-          <TableRow>
-            <TableCell>Código</TableCell>
-            <TableCell>Dirección</TableCell>
-            <TableCell>Teléfono</TableCell>
-            <TableCell>Creado</TableCell>
-            <TableCell>Actualizado</TableCell>
-            <TableCell>Acciones</TableCell>
-          </TableRow>
-        </TableHead>
-        {centerOfDistribution.length === 0 &&
-          <TableBody>
+        <Table>
+          <TableHead>
             <TableRow>
-              <TableCell colSpan={4}>No hay centros de distribución registrados</TableCell>
+              <TableCell>Código</TableCell>
+              <TableCell>Dirección</TableCell>
+              <TableCell>Teléfono</TableCell>
+              <TableCell>Creado</TableCell>
+              <TableCell>Actualizado</TableCell>
+              <TableCell>Acciones</TableCell>
             </TableRow>
-          </TableBody>
-        }
-        {centerOfDistribution.map((centerOfDistribution, index) => {
-          return (
-            <TableBody key={index}>
+          </TableHead>
+          {centerOfDistribution.length === 0 &&
+            <TableBody>
               <TableRow>
-                <TableCell>{centerOfDistribution.cd_codigo}</TableCell>
-                <TableCell>{centerOfDistribution.cd_direccion}</TableCell>
-                <TableCell>{centerOfDistribution.cd_telefono}</TableCell>
-                <TableCell>{new Date(centerOfDistribution.created_at).toLocaleDateString()}</TableCell>
-                <TableCell>{new Date(centerOfDistribution.updated_at).toLocaleDateString()}</TableCell>
-                <TableCell>
-                  <Button variant='contained' color='warning'>
-                    <Link to={`/centros_distribucion/actualizar/${centerOfDistribution.id}`}>Editar</Link>
-                  </Button>
-                  <Button variant='contained' color='error'
-                    onClick={() => deleteCenterOfDistribution(centerOfDistribution.id)}
-                  >Eliminar</Button>
-                </TableCell>
+                <TableCell colSpan={4}>No hay centros de distribución registrados</TableCell>
               </TableRow>
             </TableBody>
-          )
-        })}
+          }
+          {centerOfDistribution.map((centerOfDistribution, index) => {
+            return (
+              <TableBody key={index}>
+                <TableRow>
+                  <TableCell>{centerOfDistribution.cd_codigo}</TableCell>
+                  <TableCell>{centerOfDistribution.cd_direccion}</TableCell>
+                  <TableCell>{centerOfDistribution.cd_telefono}</TableCell>
+                  <TableCell>{new Date(centerOfDistribution.created_at).toLocaleDateString()}</TableCell>
+                  <TableCell>{new Date(centerOfDistribution.updated_at).toLocaleDateString()}</TableCell>
+                  <TableCell>
+                    <Button variant='contained' color='warning'>
+                      <Link to={`/centros_distribucion/actualizar/${centerOfDistribution.id}`}>Editar</Link>
+                    </Button>
+                    <Button variant='contained' color='error'
+                      onClick={() => deleteCenterOfDistribution(centerOfDistribution.id)}
+                    >Eliminar</Button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            )
+          })}
+        </Table>
       </TableContainer>
     </>
   )

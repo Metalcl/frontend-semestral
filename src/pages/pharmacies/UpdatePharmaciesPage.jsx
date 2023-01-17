@@ -50,8 +50,6 @@ const UpdatePharmaciesPage = () => {
                 {/* <input type="submit" value="Registrar" /> */}
                 Actualizar
               </Button>
-              <Button>
-              </Button>
             </form>
           </Box>
         )

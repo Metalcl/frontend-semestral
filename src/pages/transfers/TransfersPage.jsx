@@ -3,90 +3,69 @@ import { TransfersContext } from '../../context/TransfersContext';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import TableContainer from '@mui/material/TableContainer';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import { Button } from '@mui/material';
+
 const TransfersPage = () => {
-
   const { centerOfDistribution, setCenterOfDistribution, transfers, setTransfers } = useContext(TransfersContext);
-
   const deleteTransfer = async (id) => {
-
     const request = await axios.delete(`http://127.0.0.1:8000/api/traspaso/eliminar/${id}`);
     location.reload();
-
   }
 
   return (
-    <div>
-
+    <>
       <h1>Listado de traspasos</h1>
-
-      <Link to="/traspasos/agregar">Registrar</Link>
-
-      <table>
-
-        <thead>
-
-          <tr>
-
-            <th>Centro de distribucion origen</th>
-            <th>Centro de distribucion destino</th>
-            <th>Estado</th>
-            <th>Creado</th>
-            <th>Actualizado</th>
-            <th>Acciones</th>
-
-          </tr>
-
-        </thead>
-
-        {transfers.length === 0 &&
-
-          <tbody>
-
-            <tr>
-
-              <td colSpan={6}>No hay traspasos registrados</td>
-
-            </tr>
-
-          </tbody>}
-
-        {transfers.map((transfer, index) => {
-
-          return (
-
-            <tbody key={index}>
-
-              <tr>
-
-                <td>{centerOfDistribution.map((center, index) => { return (<div key={index}>{center.id === transfer.tras_cd_origen && center.cd_direccion}</div>) })}</td>
-                <td>{centerOfDistribution.map((center, index) => { return (<div key={index}>{center.id === transfer.tras_cd_destino && center.cd_direccion}</div>) })}</td>
-                <td>{transfer.tras_estado}</td>
-                <td>{new Date(transfer.created_at).toLocaleDateString()}</td>
-                <td>{new Date(transfer.updated_at).toLocaleDateString()}</td>
-                <td>
-
-                  <button><Link to={`/traspasos/actualizar/${transfer.id}`}>Editar</Link></button>
-
-                  <button onClick={() => {
-
-                    deleteTransfer(transfer.id);
-
-                  }}>Eliminar</button>
-
-                </td>
-
-              </tr>
-
-            </tbody>
-
-          )
-
-        })}
-
-      </table>
-
-
-    </div>
+      <Button variant="contained">
+        <Link to="/traspasos/agregar">Registrar</Link>
+      </Button>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Centro de distribucion destino</TableCell>
+              <TableCell>Estado</TableCell>
+              <TableCell>Creado</TableCell>
+              <TableCell>Actualizado</TableCell>
+              <TableCell>Acciones</TableCell>
+            </TableRow>
+          </TableHead>
+          {transfers.length === 0 &&
+            <TableBody>
+              <TableRow>
+                <TableCell colSpan={6}>No hay traspasos registrados</TableCell>
+              </TableRow>
+            </TableBody>}
+          {transfers.map((transfer, index) => {
+            return (
+              <TableBody key={index}>
+                <TableRow>
+                  <TableCell>{centerOfDistribution.map((center, index) => { return (<div key={index}>{center.id === transfer.tras_cd_origen && center.cd_direccion}</div>) })}</TableCell>
+                  <TableCell>{centerOfDistribution.map((center, index) => { return (<div key={index}>{center.id === transfer.tras_cd_destino && center.cd_direccion}</div>) })}</TableCell>
+                  <TableCell>{transfer.tras_estado}</TableCell>
+                  <TableCell>{new Date(transfer.created_at).toLocaleDateString()}</TableCell>
+                  <TableCell>{new Date(transfer.updated_at).toLocaleDateString()}</TableCell>
+                  <TableCell>
+                    <Button>
+                      <Link to={`/traspasos/actualizar/${transfer.id}`}>Editar</Link>
+                    </Button>
+                    <Button onClick={() => {
+                      deleteTransfer(transfer.id);
+                    }}>Eliminar
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            )
+          })}
+        </Table>
+      </TableContainer>
+    </>
   )
 }
 
