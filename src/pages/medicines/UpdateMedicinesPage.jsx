@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import { Button } from '@mui/material';
+
 const UpdateMedicinesPage = () => {
 
   useEffect(() => {
@@ -46,21 +51,24 @@ const UpdateMedicinesPage = () => {
 
         return (
 
-          <div key={index}>
+          <Box key={index}>
 
             <form onSubmit={updateMedicine}>
 
-              <label>Nombre</label>
-              <input type="text" defaultValue={medicine.med_nombre} name="nombre" />
+              <InputLabel>Nombre</InputLabel>
+              <TextField type="text" defaultValue={medicine.med_nombre} name="nombre" />
 
-              <label>Compuesto</label>
-              <input type="text" defaultValue={medicine.med_compuesto} name="compuesto" />
+              <InputLabel>Compuesto</InputLabel>
+              <TextField type="text" defaultValue={medicine.med_compuesto} name="compuesto" />
 
-              <input type="submit" value="Actualizar" />
+              <Button  type="submit" variant='contained' color='primary'>
+                {/* <input type="submit" value="Registrar" /> */}
+                Actualizar
+              </Button>
 
             </form>
 
-          </div>
+          </Box>
 
         )
 

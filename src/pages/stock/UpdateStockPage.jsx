@@ -3,6 +3,11 @@ import { StockContext } from '../../context/StockContext';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import { Button } from '@mui/material';
+
 const UpdateStockPage = () => {
 
   const { medicines, setMedicines } = useContext(StockContext);
@@ -35,9 +40,9 @@ const UpdateStockPage = () => {
 
       <form onSubmit={updateStock}>
 
-        <div>
+        <Box>
 
-          <label>Medicamento</label>
+          <InputLabel>Medicamento</InputLabel>
           <select name="id_medicamento">
 
             <option>Seleccione un medicamento</option>
@@ -49,11 +54,11 @@ const UpdateStockPage = () => {
 
           </select>
 
-        </div>
+        </Box>
 
-        <div>
+        <Box>
 
-          <label>Centro de distribucion</label>
+          <InputLabel>Centro de distribucion</InputLabel>
           <select name="centro_dist">
 
             <option>Seleccione un centro de distribucion</option>
@@ -65,20 +70,23 @@ const UpdateStockPage = () => {
 
           </select>
 
-        </div>
+        </Box>
 
-        <div>
+        <Box>
 
-          <label>Cantidad de medicamentos</label>
-          <input type="number" name="cantidad" placeholder="Ingrese una cantidad" min={1} />
+          <InputLabel>Cantidad de medicamentos</InputLabel>
+          <TextField type="number" name="cantidad" placeholder="Ingrese una cantidad" min={1} />
 
-        </div>
+        </Box>
 
-        <div>
+        <Box>
 
-          <input type="submit" value="Actualizar" />
+          <Button  type="submit" variant='contained' color='primary'>
+            {/* <input type="submit" value="Registrar" /> */}
+            Actualizar
+          </Button>
 
-        </div>
+        </Box>
 
       </form>
 

@@ -3,6 +3,14 @@ import { MedicinesContext } from '../../context/MedicinesContext';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import TableContainer from '@mui/material/TableContainer';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import { Button } from '@mui/material';
+
 const MedicinesPage = () => {
 
   const { medicines, setMedicines } = useContext(MedicinesContext);
@@ -20,69 +28,75 @@ const MedicinesPage = () => {
 
       <h1>Listado de medicamentos</h1>
 
-      <Link to="/medicamentos/agregar">Registrar</Link>
+      <Button variant="contained"><Link to="/medicamentos/agregar">Registrar</Link></Button>
 
-      <table>
+      <TableContainer>
 
-        <thead>
+      <Table>
 
-          <tr>
+        <TableHead>
 
-            <th>Nombre</th>
-            <th>Compuesto</th>
-            <th>Creado</th>
-            <th>Actualizado</th>
-            <th>Acciones</th>
+          <TableRow>
 
-          </tr>
+            <TableCell>Nombre</TableCell>
+            <TableCell>Compuesto</TableCell>
+            <TableCell>Creado</TableCell>
+            <TableCell>Actualizado</TableCell>
+            <TableCell>Acciones</TableCell>
 
-        </thead>
+          </TableRow>
+
+        </TableHead>
 
         {medicines.length === 0 &&
 
-          <tbody>
+          <TableBody>
 
-            <tr>
+            <TableRow>
 
-              <td colSpan={6}>No hay medicinas registradas</td>
+              <TableCell colSpan={6}>No hay medicinas registradas</TableCell>
 
-            </tr>
+            </TableRow>
 
-          </tbody>}
+          </TableBody>}
 
         {medicines.map((medicine, index) => {
 
           return (
 
-            <tbody key={index}>
+            <TableBody key={index}>
 
-              <tr>
+              <TableRow>
 
-                <td>{medicine.med_nombre}</td>
-                <td>{medicine.med_compuesto}</td>
-                <td>{new Date(medicine.created_at).toLocaleDateString()}</td>
-                <td>{new Date(medicine.updated_at).toLocaleDateString()}</td>
-                <td>
+                <TableCell>{medicine.med_nombre}</TableCell>
+                <TableCell>{medicine.med_compuesto}</TableCell>
+                <TableCell>{new Date(medicine.created_at).toLocaleDateString()}</TableCell>
+                <TableCell>{new Date(medicine.updated_at).toLocaleDateString()}</TableCell>
+                <TableCell>
 
-                  <button><Link to={`/medicamentos/actualizar/${medicine.id}`}>Editar</Link></button>
+                  <Button variant='contained' color='warning'><Link to={`/medicamentos/actualizar/${medicine.id}`}>Editar</Link></Button>
 
-                  <button onClick={() => {
+                  <Button variant='contained' color='error' onClick={() => {
 
                     deleteMedicine(medicine.id);
 
-                  }}>Eliminar</button>
+                  }}>Eliminar</Button>
 
-                </td>
+                </TableCell>
 
-              </tr>
+              </TableRow>
 
-            </tbody>
+            </TableBody>
 
           )
 
         })}
 
-      </table>
+      </Table>
+
+      </TableContainer>
+      
+
 
     </>
   )

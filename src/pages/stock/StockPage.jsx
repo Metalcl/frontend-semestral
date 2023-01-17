@@ -3,6 +3,14 @@ import { StockContext } from '../../context/StockContext';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import TableContainer from '@mui/material/TableContainer';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import { Button } from '@mui/material';
+
 const StockPage = () => {
 
   const { medicines, setMedicines, centerOfDistribution, setCenterOfDistribution, stocks, setStocks } = useContext(StockContext);
@@ -15,78 +23,81 @@ const StockPage = () => {
   }
 
   return (
-    <div>
+    <>
 
       <h1>Listado de stocks</h1>
 
-      <Link to="/stock/agregar">Registrar</Link>
+      <Button variant="contained"><Link to="/stock/agregar">Registrar</Link></Button>
 
-      <table>
+      <TableContainer>
 
-        <thead>
+      <Table>
 
-          <tr>
+        <TableHead>
 
-            <th>Medicamento</th>
-            <th>Centro de distribucion</th>
-            <th>Cantidad</th>
-            <th>Creado</th>
-            <th>Actualizado</th>
-            <th>Acciones</th>
+          <TableRow>
 
-          </tr>
+            <TableCell>Medicamento</TableCell>
+            <TableCell>Centro de distribucion</TableCell>
+            <TableCell>Cantidad</TableCell>
+            <TableCell>Creado</TableCell>
+            <TableCell>Actualizado</TableCell>
+            <TableCell>Acciones</TableCell>
 
-        </thead>
+          </TableRow>
+
+        </TableHead>
 
         {stocks.length === 0 &&
 
-          <tbody>
+          <TableBody>
 
-            <tr>
+            <TableRow>
 
-              <td colSpan={6}>No hay medicinas registradas</td>
+              <TableCell colSpan={6}>No hay medicinas registradas</TableCell>
 
-            </tr>
+            </TableRow>
 
-          </tbody>}
+          </TableBody>}
 
         {stocks.map((stock, index) => {
 
           return (
 
-            <tbody key={index}>
+            <TableBody key={index}>
 
-              <tr>
+              <TableRow>
                 
-                <td>{medicines.map((medicine, index) => { return (<div key={index}>{medicine.id === stock.scd_id_medicamento && medicine.med_nombre}</div>)})}</td>
-                <td>{centerOfDistribution.map((center, index) => { return (<div key={index}>{center.id === stock.scd_centro_dist && center.cd_direccion}</div>) })}</td>
-                <td>{stock.scd_cantidad}</td>
-                <td>{new Date(stock.created_at).toLocaleDateString()}</td>
-                <td>{new Date(stock.updated_at).toLocaleDateString()}</td>
-                <td>
+                <TableCell>{medicines.map((medicine, index) => { return (<div key={index}>{medicine.id === stock.scd_id_medicamento && medicine.med_nombre}</div>)})}</TableCell>
+                <TableCell>{centerOfDistribution.map((center, index) => { return (<div key={index}>{center.id === stock.scd_centro_dist && center.cd_direccion}</div>) })}</TableCell>
+                <TableCell>{stock.scd_cantidad}</TableCell>
+                <TableCell>{new Date(stock.created_at).toLocaleDateString()}</TableCell>
+                <TableCell>{new Date(stock.updated_at).toLocaleDateString()}</TableCell>
+                <TableCell>
 
-                  <button><Link to={`/stock/actualizar/${stock.id}`}>Editar</Link></button>
+                  <Button variant='contained' color='warning'><Link to={`/stock/actualizar/${stock.id}`}>Editar</Link></Button>
 
-                  <button onClick={() => {
+                  <Button variant='contained' color='error' onClick={() => {
 
                     deleteStock(stock.id);
 
-                  }}>Eliminar</button>
+                  }}>Eliminar</Button>
 
-                </td>
+                </TableCell>
 
-              </tr>
+              </TableRow>
 
-            </tbody>
+            </TableBody>
 
           )
 
         })}
 
-      </table>
+      </Table>
 
+      </TableContainer>
 
-    </div>
+    </>
   )
 }
 

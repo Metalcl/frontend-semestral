@@ -3,6 +3,11 @@ import { StockContext } from '../../context/StockContext';
 import { useForm } from '../../hooks/useForm';
 import axios from 'axios';
 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import { Button } from '@mui/material';
+
 const AddStockPage = () => {
 
   const { medicines, setMedicines } = useContext(StockContext);
@@ -25,12 +30,12 @@ const AddStockPage = () => {
 
       <form onSubmit={addStock}>
 
-        <div>
+        <Box>
 
-          <label>Medicamento</label>
+          <InputLabel>Medicamento</InputLabel>
           <select name="id_medicamento" onChange={changed}>
 
-            <option selected="true" disabled="disabled">Seleccione un medicamento</option>
+            <option>Seleccione un medicamento</option>
             {
               medicines.map((medicine, index) => (
                 <option key={index} value={medicine.id}>{medicine.med_nombre}</option>
@@ -39,14 +44,14 @@ const AddStockPage = () => {
 
           </select>
 
-        </div>
+        </Box>
 
-        <div>
+        <Box>
 
-          <label>Centro de distribucion</label>
+          <InputLabel>Centro de distribucion</InputLabel>
           <select name="centro_dist" onChange={changed}>
 
-            <option selected="true" disabled="disabled">Seleccione un centro de distribucion</option>
+            <option>Seleccione un centro de distribucion</option>
             {
               centerOfDistribution.map((center, index) => (
                 <option key={index} value={center.id}>{center.cd_direccion}</option>
@@ -55,20 +60,23 @@ const AddStockPage = () => {
 
           </select>
 
-        </div>
+        </Box>
 
-        <div>
+        <Box>
 
-          <label>Cantidad de medicamentos</label>
-          <input type="number" name="cantidad" placeholder="Ingrese una cantidad" min={1} onChange={changed} />
+          <InputLabel>Cantidad de medicamentos</InputLabel>
+          <TextField type="number" name="cantidad" placeholder="Ingrese una cantidad" min={1} onChange={changed} />
 
-        </div>
+        </Box>
 
-        <div>
+        <Box>
 
-          <input type="submit" value="Registrar" />
+          <Button  type="submit" variant='contained' color='primary'>
+            {/* <input type="submit" value="Registrar" /> */}
+            Registrar
+          </Button>
 
-        </div>
+        </Box>
 
       </form>
 
